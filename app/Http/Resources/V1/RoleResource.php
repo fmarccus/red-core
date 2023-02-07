@@ -18,7 +18,7 @@ class RoleResource extends JsonResource
             'id' => $this->id,
             'role_name' => $this->role_name,
             'description' => $this->description,
-            'assoc_user' => $this->role->user ?? "No user assigned to this role"
+            'assoc_user' => $this->user->full_name ?? "No user assigned to this role"
         ];
     }
 }
