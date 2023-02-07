@@ -6,6 +6,9 @@ import RoleEdit from '../views/roles/RoleEdit.vue'
 
 
 import UserIndex from '../views/users/UserIndex.vue'
+import UserCreate from '../views/users/UserCreate.vue'
+import UserEdit from '../views/users/UserEdit.vue'
+
 
 
 
@@ -37,6 +40,17 @@ const router = createRouter({
       path: '/users',
       name: 'UserIndex',
       component: UserIndex
+    },
+    {
+      path: '/users/create',
+      name: 'UserCreate',
+      component: UserCreate
+    },
+    {
+      path: '/users/:id/edit',
+      name: 'UserEdit',
+      component: UserEdit,
+      props: true
     },
 
   ]
