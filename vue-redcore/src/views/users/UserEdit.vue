@@ -1,12 +1,9 @@
 <script setup>
 import { onMounted } from "vue";
 import useUsers from "../../composables/users";
-// import useRoles from "../../composables/roles";
-
-const { user, updateUser, errors, showUser } = useUsers();
-// const { indexRoles, roles } = useRoles();
 
 
+const { user, updateUser, errors, roles, showUser } = useUsers();
 const props = defineProps({
     id: {
         required: true,
@@ -68,7 +65,5 @@ onMounted(() => showUser(props.id));
                 </div>
             </div>
         </div>
-
-
     </div>
 </template>

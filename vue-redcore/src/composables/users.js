@@ -9,6 +9,7 @@ export default function useUsers() {
     const user = ref([]);
     const errors = ref({});
     const router = useRouter();
+    const roles = ref([]);
 
     const indexUsers = async () => {
         const response = await axios.get("users");
@@ -18,7 +19,11 @@ export default function useUsers() {
 
     const showUser = async (id) => {
         const response = await axios.get("users/" + id);
+        const response_roles = await axios.get("roles/");
+
         user.value = response.data.data;
+        roles.value = response_roles.data.data;
+        
     }
 
     const storeUser = async (data) => {
@@ -54,6 +59,7 @@ export default function useUsers() {
 
     return {
         users,
+        roles,
         user,
         errors,
         indexUsers,
