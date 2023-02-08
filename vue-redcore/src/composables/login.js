@@ -9,22 +9,29 @@ export default function useLogin() {
 
 
     const login = async (data) => {
-        // try {
-        //     await axios.post("login", data);
-        //     await router.push({ name: "HomeView" });
-        // } catch (error) {
-        //     if (error.response.status === 422) {
-        //         errors.value = error.response.data.errors;
-        //     }
-        // }
-        await axios.post("login", data).then(response => {
-            console.log(response.data.data);
-            router.push({ name: "HomeView" });
-        });
+        try {
+            const response = await axios.post("login", data);
+            if (response.status === 200 && response.data && response.data.token) {
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('userName', response.data.full_name);
+                console.log(response.data.token + " Name:" + response.data.full_name);
+                await router.push({ name: "HomeView" });
+            }
+        } catch (error) {
+            if (error.response.status === 422) {
+                errors.value = error.response.data.errors;
+            }
+        }
+    }
+    const logout = async () => {
+        localStorage.removeItem('token');
+        await router.push({ name: "Login" });
 
     }
+
     return {
         errors,
-        login
+        login,
+        logout
     }
 }

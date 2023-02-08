@@ -23,4 +23,4 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('roles', RoleController::class);
     Route::post('login', [UserController::class, 'login']);
-});
+})->middleware('auth:sanctum');

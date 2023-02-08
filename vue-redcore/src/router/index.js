@@ -61,6 +61,26 @@ const router = createRouter({
     },
 
   ]
+
 })
 
+// router.beforeEach((to, from, next) => {
+//   const userToken = localStorage.getItem('token')
+//   if (!userToken && to.name != 'Login') {
+//     // Continue to page.
+
+//   } return { name: 'Login' }
+// });
+router.beforeEach(async (to, from) => {
+  const userToken = localStorage.getItem('token')
+  if (
+    // make sure the user is authenticated
+    !userToken &&
+    // ❗️ Avoid an infinite redirect
+    to.name !== 'Login'
+  ) {
+    // redirect the user to the login page
+    return { name: 'Login' }
+  }
+})
 export default router

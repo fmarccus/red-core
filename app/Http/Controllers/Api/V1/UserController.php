@@ -115,9 +115,16 @@ class UserController extends Controller
     {
         //Attempt to enter email+password 
         if (auth()->attempt(['email_address' => $request->email_address, 'password' => $request->password])) {
-            $user = auth()->user();
+            // $user = auth()->user();
+            $user = User::where('email_address', $request->email_address)->first();
+
             //Show the data of the user after successful login
-            return new UserResource($user);
+            // return new UserResource($user);
+            return response()->json([
+                'full_name' => $user->full_name,
+                'message' => 'Logged In Successfully',
+                'token' => $user->createToken("API_TOKEN")->plainTextToken
+            ]);
         } else {
             return response()->json(
                 [
