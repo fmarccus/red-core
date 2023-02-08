@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Login from '../views/Login.vue'
+
 import RoleIndex from '../views/roles/RoleIndex.vue'
 import RoleCreate from '../views/roles/RoleCreate.vue'
 import RoleEdit from '../views/roles/RoleEdit.vue'
@@ -19,6 +21,11 @@ const router = createRouter({
       path: '/',
       name: 'HomeView',
       component: HomeView
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/roles',

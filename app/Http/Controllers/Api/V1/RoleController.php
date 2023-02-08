@@ -42,6 +42,10 @@ class RoleController extends Controller
         return response()->json([
             "message" => "Role stored"
         ]);
+
+        return response()->json([
+            "message" => "Role stored"
+        ]);
     }
 
     /**
